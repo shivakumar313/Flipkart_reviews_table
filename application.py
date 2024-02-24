@@ -7,13 +7,16 @@ import logging
 logging.basicConfig(filename="scrapper.log" , level=logging.INFO)
 import pymongo
 
-app = Flask(__name__)
+application = Flask(__name__) # initializing a flask app
+app=application
 
 @app.route("/", methods = ['GET'])
+@cross_origin                    ##using this decorator so that cross country people can also access aur application
 def homepage():
     return render_template("index.html")
 
 @app.route("/review" , methods = ['POST' , 'GET'])
+@cross_origin
 def index():
     if request.method == 'POST':
         try:
